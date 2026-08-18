@@ -9,17 +9,23 @@
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; height: 100%; background: #0F1D1B; overflow: hidden; }
 
+  /* Wordwall keeps its timer, score, menu and sound controls in all four
+     corners of the game, so the home button cannot float over it without
+     hiding one of them. It gets its own strip above the game instead. */
+  :root { --sol-bar: 60px; }
+  @media (max-width: 640px) { :root { --sol-bar: 52px; } }
+
   /* The game fills the screen; only the home button sits above it. */
   #game-frame {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
+    position: absolute; top: var(--sol-bar); left: 0; right: 0; bottom: 0;
+    width: 100%; height: calc(100% - var(--sol-bar));
     border: 0; display: block;
   }
 
   /* ---------- Sol home button (unified turquoise) ---------- */
   .sol-home-btn {
     position: fixed;
-    top: 12px;
+    top: 4px;
     left: 12px;
     z-index: 101;
     width: 52px;
@@ -38,7 +44,7 @@
   .sol-home-btn:focus-visible { outline: 3px solid #FFFFFF; outline-offset: 3px; }
   .sol-home-btn svg { width: 26px; height: 26px; }
   @media (max-width: 640px) {
-    .sol-home-btn { width: 44px; height: 44px; top: 8px; left: 8px; }
+    .sol-home-btn { width: 44px; height: 44px; top: 4px; left: 8px; }
     .sol-home-btn svg { width: 22px; height: 22px; }
   }
   @media (prefers-reduced-motion: reduce) {
