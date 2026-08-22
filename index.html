@@ -51,6 +51,67 @@
     .sol-home-btn { transition: none; }
     .sol-home-btn:hover { transform: none; }
   }
+
+/* ---------- Sol lesson navigation (next / previous) ---------- */
+/* Smaller than the home button: it keeps the exact corner, size and colour
+   it holds on every page of the platform, and the arrows read as secondary
+   to it.
+
+   This page is a Wordwall wrapper: a thin strip holding the home button with
+   the game in an iframe directly below it. Unlike the lessons there is no
+   free margin under the home button — the game starts 4px below — so here
+   the arrows sit BESIDE it, inside the strip, which is empty across its
+   width. Measured: the game starts at y52 on a phone and y60 above that.
+
+   (On the lesson pages the opposite is true and the row goes below.)
+
+   Ignore the paragraph that follows about being below
+   the first choice and it looked right in isolation, but measured against
+   the real pages it covered a control on 6 of 11 lessons, because most
+   lessons put their own control row at exactly that height. The left margin
+   under the home button is empty on every lesson.
+
+   They sit in a row rather than at fixed
+   coordinates each, so a lesson that has only one of them keeps it snug
+   against the home button instead of leaving a hole where the other would
+   have been. The row is forced to LTR so the arrows keep their order on a
+   right-to-left page. */
+.sol-nav {
+    position: fixed;
+    top: 11px;
+    left: 74px;
+    height: 38px;
+    z-index: 101;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    direction: ltr;
+}
+.sol-nav-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #17A79B;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(18, 48, 44, 0.35);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.sol-nav-btn:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 8px 18px rgba(18, 48, 44, 0.45); }
+.sol-nav-btn:focus-visible { outline: 3px solid #FFFFFF; outline-offset: 3px; }
+.sol-nav-btn svg { width: 20px; height: 20px; }
+@media (max-width: 640px) {
+    .sol-nav { top: 9px; left: 60px; height: 34px; gap: 6px; }
+    .sol-nav-btn { width: 34px; height: 34px; }
+    .sol-nav-btn svg { width: 18px; height: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .sol-nav-btn { transition: none; }
+    .sol-nav-btn:hover { transform: none; }
+}
 </style>
 </head>
 <body>
@@ -67,6 +128,18 @@
     <path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10" />
   </svg>
 </a>
+<div class="sol-nav">
+  <a class="sol-nav-btn sol-nav-next" href="https://portal.smoove.io/og7b11bd8ftf4p3nmbnb/ContentPage?category=qqb&module=bgam&page=dfta" target="_top" aria-label="להמשך">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M15 5l-7 7 7 7" />
+    </svg>
+  </a>
+  <a class="sol-nav-btn sol-nav-back" href="https://portal.smoove.io/og7b11bd8ftf4p3nmbnb/ContentPage?category=qqb&module=bgam&page=dfts" target="_top" aria-label="אחורה">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M9 5l7 7-7 7" />
+    </svg>
+  </a>
+</div>
 
 </body>
 </html>
